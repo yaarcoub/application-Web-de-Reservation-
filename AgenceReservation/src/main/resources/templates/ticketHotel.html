@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <meta charset="UTF-8"/>
+
+    <style>
+        body {
+            font-family: DejaVu Sans, Arial, sans-serif;
+            background: #eef2f7;
+            margin: 0;
+            padding: 25px;
+        }
+
+        .ticket-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #cbd5e1;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            background: #003d80;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .section {
+            padding: 25px 35px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .section h2 {
+            margin: 0 0 15px;
+            font-size: 22px;
+            color: #003d80;
+        }
+
+        .info-line {
+            font-size: 17px;
+            margin: 6px 0;
+        }
+        .label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .qr-table {
+            display: table;
+            width: 100%;
+        }
+        .qr-left {
+            display: table-cell;
+            width: 65%;
+        }
+        .qr-right {
+            display: table-cell;
+            width: 35%;
+            text-align: right;
+        }
+
+        .price {
+            font-size: 22px;
+            color: #d9534f;
+            font-weight: bold;
+            margin-top: 12px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 18px;
+            font-size: 14px;
+            color: #6b7280;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="ticket-wrapper">
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>RÉSERVATION D'HÔTEL</h1>
+        <div style="margin-top: 8px; font-size: 18px;" th:text="${hotelName}">Nom Hôtel</div>
+    </div>
+
+    <!-- SECTION RÉSERVATION -->
+    <div class="section">
+        <h2>Informations de la Réservation</h2>
+
+        <p class="info-line"><span class="label">ID Réservation :</span>
+            <span th:text="${reservationId}">RES-001</span></p>
+
+        <p class="info-line"><span class="label">Client :</span>
+            <span th:text="${clientName}">Nom Client</span></p>
+
+        <p class="info-line"><span class="label">date Arrivée :</span>
+            <span th:text="${dateArrivée}">2025-11-20</span></p>
+    </div>
+
+    <!-- SECTION HÔTEL -->
+    <div class="section">
+        <h2>Détails de l'Hôtel</h2>
+
+        <p class="info-line"><span class="label">Nom Hôtel :</span>
+            <span th:text="${nomHotel}">Hotel Lux</span></p>
+
+        <p class="info-line"><span class="label">Étoiles :</span>
+            <span th:text="${nombreEtoiles}">5</span> ★</p>
+
+        <p class="info-line"><span class="label">Ville :</span>
+            <span th:text="${ville}">Paris</span></p>
+
+        <p class="info-line"><span class="label">Adresse :</span>
+            <span th:text="${adresse}">10 rue Exemple</span></p>
+
+        <p class="info-line"><span class="label">Pays :</span>
+            <span th:text="${pays}">France</span></p>
+
+        <p class="info-line"><span class="label">Téléphone :</span>
+            <span th:text="${telephone}">+33 123 456 789</span></p>
+
+        <p class="info-line"><span class="label">Email :</span>
+            <span th:text="${email}">hotel@mail.com</span></p>
+    </div>
+
+    <!-- SECTION CHAMBRE -->
+    <div class="section">
+        <h2>Détails de la Chambre</h2>
+
+        <p class="info-line"><span class="label">Type :</span>
+            <span th:text="${typeChambre}">Suite Deluxe</span></p>
+
+        <p class="info-line"><span class="label">Capacité :</span>
+            <span th:text="${capaciteChambre}">3</span> personnes</p>
+
+        <p class="info-line"><span class="label">Nombre de Chambres :</span>
+            <span th:text="${nombreChambres}">120</span></p>
+
+        <p class="info-line"><span class="label">Nombre de Nuit  :</span>
+            <span th:text="${nombreNuit}">120</span></p>
+
+        <p class="info-line"><span class="label">Petit Déjeuner :</span>
+            <span th:text="${petitDejeunerInclus} ? 'Inclus' : 'Non inclus'">Inclus</span></p>
+
+        <p class="info-line"><span class="label">Wi-Fi :</span>
+            <span th:text="${wifiInclus} ? 'Oui' : 'Non'">Oui</span></p>
+
+        <p class="info-line"><span class="label">Parking :</span>
+            <span th:text="${parkingDisponible} ? 'Disponible' : 'Non disponible'">Disponible</span></p>
+
+        <p class="info-line"><span class="label">Piscine :</span>
+            <span th:text="${piscine} ? 'Oui' : 'Non'">Oui</span></p>
+
+        <p class="info-line"><span class="label">Service Chambre :</span>
+            <span th:text="${serviceChambre} ? 'Oui' : 'Non'">Oui</span></p>
+
+        <p class="price"><span class="label">Prix par nuit :</span>
+            <span th:text="${price}">120</span> €</p>
+    </div>
+
+    <!-- QR + Prix -->
+    <div class="section">
+        <div class="qr-table">
+
+            <!-- LEFT -->
+            <div class="qr-left">
+
+            </div>
+
+            <!-- RIGHT -->
+            <div class="qr-right">
+                <img th:src="${qrDataUri}" width="150" height="150"
+                     style="border:1px solid #ccc; padding:5px; border-radius:8px;"/>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        Merci d’avoir choisi notre plateforme.<br/>
+        Pour toute assistance, contactez notre service client.
+    </div>
+
+</div>
+
+</body>
+</html>

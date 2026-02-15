@@ -1,0 +1,106 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Vérification Email</title>
+
+    <!-- Styles inline + responsive (les clients mail aiment les styles inline) -->
+    <style>
+    /* Reset basique */
+    body,table,td,a { -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; }
+    table,td { mso-table-lspace:0pt; mso-table-rspace:0pt; }
+    img { -ms-interpolation-mode:bicubic; display:block; border:0; outline:none; text-decoration:none; }
+
+    /* Conteneur */
+    .email-wrapper { width:100%; background:#f4f6fb; padding:20px 0; font-family: "Helvetica Neue", Arial, sans-serif; }
+
+    /* Card */
+    .email-card { max-width:600px; margin:0 auto; background:#ffffff; border-radius:12px; box-shadow:0 8px 30px rgba(37,40,46,0.06); overflow:hidden; }
+
+    .header { padding:24px 28px; display:flex; align-items:center; gap:12px; }
+    .logo { width:48px; height:48px; border-radius:8px; background:#eef2ff; display:inline-block; text-align:center; line-height:48px; font-weight:bold; color:#3b82f6; }
+
+    .hero { padding:18px 28px; border-top:1px solid #f0f2f7; }
+    .preline { color:#6b7280; font-size:13px; margin-bottom:8px; }
+    .title { font-size:22px; margin:6px 0 12px; color:#111827; }
+    .subtitle { color:#374151; font-size:15px; line-height:1.5; margin-bottom:18px; }
+
+    .code-box { display:inline-block; background:linear-gradient(180deg,#eef2ff,#ffffff); padding:18px 26px; border-radius:10px; font-size:28px; font-weight:700; color:#0b5fff; letter-spacing:4px; margin-bottom:18px; }
+
+    .btn { display:inline-block; text-decoration:none; padding:12px 20px; border-radius:10px; background:#0b5fff; color:#ffffff; font-weight:600; font-size:15px; }
+
+    .small { color:#6b7280; font-size:13px; margin-top:14px; }
+    .footer { padding:18px 28px; font-size:13px; color:#9ca3af; border-top:1px solid #f0f2f7; text-align:center; }
+
+    /* Responsive */
+    @media (max-width:420px) {
+      .header, .hero, .footer { padding-left:16px; padding-right:16px; }
+      .title { font-size:20px; }
+      .code-box { font-size:24px; padding:14px 18px; }
+    }
+  </style>
+</head>
+
+<body>
+<div class="email-wrapper">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+            <td align="center">
+                <table role="presentation" class="email-card" width="100%" cellpadding="0" cellspacing="0">
+                    <!-- Header -->
+                    <tr>
+                        <td class="header" align="left">
+                            <!-- logo: tu peux remplacer par <img src="..." alt="logo" style="width:48px;height:48px;border-radius:8px"> -->
+                            <div class="logo" aria-hidden="true">LOGO</div>
+                            <div style="flex:1">
+                                <div style="font-size:14px;color:#374151;font-weight:600;">[[${companyName}]]</div>
+                                <div style="font-size:12px;color:#9ca3af;margin-top:2px;">Sécurité & vérification</div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- Hero / Body -->
+                    <tr>
+                        <td class="hero" align="left">
+                            <div class="preline">Bonjour [[${name}]],</div>
+                            <div class="title">Voici votre code de vérification</div>
+                            <div class="subtitle">
+                                Utilise ce code pour vérifier ton adresse e-mail. Le code expirera dans <strong>10 minutes</strong>.
+                            </div>
+
+                            <!-- Code -->
+                            <div class="code-box">[[${code}]]</div>
+
+                            <!-- Bouton -->
+                            <div style="margin-top:6px;">
+                                <!-- Utilise l'attribut Thymeleaf th:href pour créer le lien dynamique -->
+                                <a th:href="${verificationLink}" href="#" class="btn">Vérifier mon adresse</a>
+                            </div>
+
+                            <div class="small">
+                                Si le bouton ne fonctionne pas, copie-colle cette URL dans ton navigateur :
+                                <div style="word-break:break-all;"><a th:href="${verificationLink}" href="#" style="color:#0b5fff; text-decoration:none;">[[${verificationLink}]]</a></div>
+                            </div>
+
+                            <div class="small" style="margin-top:12px;">
+                                Si tu n'as pas demandé ce code, ignore simplement cet e-mail ou contacte <a th:href="'mailto:' + ${supportEmail}" href="#" style="color:#0b5fff;">[[${supportEmail}]]</a>.
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- Footer -->
+                    <tr>
+                        <td class="footer">
+                            © [[${year}]] [[${companyName}]]. Tous droits réservés.<br>
+                            <span style="color:#cbd5e1;">[[${companyAddress}]]</span>
+                        </td>
+                    </tr>
+
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+/* Client section specific styles */
+.client-logo {
+  height: 80px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.client-logo:hover {
+  transform: translateY(-5px);
+  opacity: 0.8;
+}
+
+.client-logo img {
+  max-height: 40px;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+
+.client-logo:hover img {
+  filter: grayscale(0%);
+}
+
+/* Responsive adjustments */
+@media (max-width: 767.98px) {
+  .client-logo {
+    height: 60px;
+  }
+  
+  .client-logo img {
+    max-height: 30px;
+  }
+}

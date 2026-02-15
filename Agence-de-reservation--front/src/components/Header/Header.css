@@ -1,0 +1,120 @@
+/* Header specific styles */
+.navbar-toggler-animation {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  position: relative;
+}
+
+.navbar-toggler-animation span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background-color: currentColor;
+  margin: 4px 0;
+  transition: all 0.3s ease;
+}
+
+.navbar-toggler-animation span:nth-child(1) {
+  transform-origin: left center;
+}
+
+.navbar-toggler-animation span:nth-child(2) {
+  transform-origin: left center;
+}
+
+.navbar-toggler-animation span:nth-child(3) {
+  transform-origin: left center;
+}
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-animation span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-animation span:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-animation span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Dropdown animations */
+.dropdown-animation {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Notification badge */
+.notif-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 8px;
+  height: 8px;
+  background-color: #d6293e;
+  border-radius: 50%;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Avatar styles */
+.avatar {
+  position: relative;
+  display: inline-block;
+}
+
+.avatar-sm {
+  width: 32px;
+  height: 32px;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Theme toggle styles */
+.theme-icon-active .btn {
+  border: none;
+  background: none;
+  padding: 4px;
+}
+
+.theme-icon-active .btn.active {
+  background-color: var(--bs-primary);
+  color: white;
+  border-radius: 4px;
+}
+
+/* Mobile responsive */
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+  
+  .navbar-collapse.show {
+    display: block !important;
+  }
+}

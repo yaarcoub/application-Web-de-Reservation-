@@ -1,0 +1,27 @@
+/* Nearby attractions specific styles */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
+}
+
+.card-img-top {
+  height: 150px;
+  object-fit: cover;
+}
+
+.badge {
+  font-size: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767.98px) {
+  .card-img-top {
+    height: 120px;
+  }
+}

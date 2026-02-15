@@ -1,0 +1,188 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Paiement requis</title>
+
+  <style>
+        body,table,td,a { -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; }
+        table,td { mso-table-lspace:0pt; mso-table-rspace:0pt; }
+        img { -ms-interpolation-mode:bicubic; display:block; border:0; outline:none; }
+
+        .email-wrapper {
+            width:100%;
+            background:#f4f6fb;
+            padding:20px 0;
+            font-family: "Helvetica Neue", Arial, sans-serif;
+        }
+
+        .email-card {
+            max-width:600px;
+            margin:0 auto;
+            background:#ffffff;
+            border-radius:12px;
+            box-shadow:0 8px 30px rgba(37,40,46,0.06);
+            overflow:hidden;
+        }
+
+        .header {
+            padding:24px 28px;
+            display:flex;
+            align-items:center;
+            gap:12px;
+        }
+
+        .logo {
+            width:48px;
+            height:48px;
+            border-radius:8px;
+            background:#ecfeff;
+            display:inline-block;
+            text-align:center;
+            line-height:48px;
+            font-weight:bold;
+            color:#0ea5e9;
+        }
+
+        .hero {
+            padding:20px 28px;
+            border-top:1px solid #f0f2f7;
+        }
+
+        .preline {
+            color:#6b7280;
+            font-size:13px;
+            margin-bottom:8px;
+        }
+
+        .title {
+            font-size:22px;
+            margin:6px 0 12px;
+            color:#111827;
+        }
+
+        .subtitle {
+            color:#374151;
+            font-size:15px;
+            line-height:1.6;
+            margin-bottom:18px;
+        }
+
+        .price-box {
+            background:linear-gradient(180deg,#ecfeff,#ffffff);
+            padding:16px 22px;
+            border-radius:10px;
+            font-size:20px;
+            font-weight:700;
+            color:#0284c7;
+            margin-bottom:18px;
+            display:inline-block;
+        }
+
+        .btn {
+            display:inline-block;
+            text-decoration:none;
+            padding:14px 22px;
+            border-radius:10px;
+            background:#0284c7;
+            color:#ffffff;
+            font-weight:600;
+            font-size:15px;
+        }
+
+        .warning {
+            background:#fff7ed;
+            color:#9a3412;
+            font-size:14px;
+            padding:12px 14px;
+            border-radius:8px;
+            margin-top:18px;
+        }
+
+        .footer {
+            padding:18px 28px;
+            font-size:13px;
+            color:#9ca3af;
+            border-top:1px solid #f0f2f7;
+            text-align:center;
+        }
+
+        @media (max-width:420px) {
+            .header, .hero, .footer {
+                padding-left:16px;
+                padding-right:16px;
+            }
+            .title {
+                font-size:20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div class="email-wrapper">
+  <table role="presentation" width="100%">
+    <tr>
+      <td align="center">
+        <table role="presentation" class="email-card" width="100%">
+          <!-- Header -->
+          <tr>
+            <td class="header">
+              <div class="logo">PAY</div>
+              <div>
+                <div style="font-size:14px;color:#374151;font-weight:600;">[[${companyName}]]</div>
+                <div style="font-size:12px;color:#9ca3af;">Paiement & réservation</div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Body -->
+          <tr>
+            <td class="hero">
+              <div class="preline">Bonjour [[${name}]],</div>
+              <div class="title">Paiement requis pour confirmer votre réservation</div>
+
+              <div class="subtitle">
+                Votre réservation a bien été créée, mais elle reste <strong>en attente de paiement</strong>.
+                Merci de finaliser le paiement dans les <strong>10 minutes</strong> afin de la confirmer.
+              </div>
+
+              <div class="price-box">
+                Montant à payer : [[${totalPrice}]] MAD
+              </div>
+
+              <div>
+                <a th:href="${paymentUrl}" href="#" class="btn">
+                  Finaliser le paiement
+                </a>
+              </div>
+
+              <div class="warning">
+                ⚠️ Sans paiement dans ce délai, votre réservation sera automatiquement annulée.
+              </div>
+
+              <div style="font-size:13px;color:#6b7280;margin-top:14px;">
+                Si le bouton ne fonctionne pas, copiez ce lien dans votre navigateur :<br>
+                <a th:href="${paymentUrl}" href="#" style="color:#0284c7;word-break:break-all;">
+                  [[${paymentUrl}]]
+                </a>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td class="footer">
+              © [[${year}]] [[${companyName}]]. Tous droits réservés.<br>
+              [[${companyAddress}]]
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

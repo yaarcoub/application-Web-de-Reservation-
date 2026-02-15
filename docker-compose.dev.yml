@@ -1,0 +1,71 @@
+services:
+  mysql:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: agencereservation
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  activemq:
+    image: apache/activemq-classic:5.18.3
+    ports:
+      - "8161:8161"
+      - "61616:61616"
+      - "61613:61613"
+
+  spring:
+    build:
+      context: ./AgenceReservation
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./AgenceReservation:/app
+    ports:
+      - "8081:8081"
+    env_file:
+      - .env.dev
+    depends_on:
+      - mysql
+      - activemq
+
+  node:
+    build:
+      context: ./backEnd_ReadOnly
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./backEnd_ReadOnly:/app
+    ports:
+      - "4000:4000"
+    env_file:
+      - ./backEnd_ReadOnly/.env
+    depends_on:
+      - activemq
+
+  frontend:
+    build:
+      context: ./Agence-de-reservation--front
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./Agence-de-reservation--front:/app
+      - /app/node_modules
+    ports:
+      - "5173:5173"
+    depends_on:
+      - spring
+      - node
+    environment:
+      VITE_SPRING_API_URL: "http://localhost:8081/agence-de-Reservation/v1"
+      VITE_NODE_API_URL: "http://localhost:4000/api/v1"
+
+volumes:
+  mysql_data:
+  mongo_data:

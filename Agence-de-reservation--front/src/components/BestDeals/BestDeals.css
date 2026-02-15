@@ -1,0 +1,54 @@
+/* Best Deals specific styles */
+.best-deals-slider {
+  position: relative;
+}
+
+.best-deals-slider .card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+}
+
+.best-deals-slider .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.best-deals-slider .card-img {
+  height: 120px;
+  object-fit: cover;
+}
+
+.best-deals-slider .card-body {
+  min-height: 120px;
+}
+
+.best-deals-slider .stretched-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.best-deals-slider .stretched-link:hover {
+  color: var(--bs-primary);
+}
+
+/* Responsive adjustments */
+@media (max-width: 767.98px) {
+  .best-deals-slider .card-img {
+    height: 100px;
+  }
+  
+  .best-deals-slider .card-body {
+    min-height: 100px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .best-deals-slider .row {
+    margin: 0 -0.5rem;
+  }
+  
+  .best-deals-slider .col-md-6 {
+    padding: 0 0.5rem;
+    margin-bottom: 1rem;
+  }
+}

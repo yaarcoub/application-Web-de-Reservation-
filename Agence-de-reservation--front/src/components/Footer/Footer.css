@@ -1,0 +1,78 @@
+/* Footer specific styles */
+.bg-dark {
+  background-color: #0b0a12 !important;
+}
+
+.h-40px {
+  height: 40px;
+}
+
+.h-30px {
+  height: 30px;
+}
+
+.text-primary-hover a:hover {
+  color: var(--bs-primary) !important;
+}
+
+/* Social media button styles */
+.bg-facebook {
+  background-color: #3b5998;
+  color: white;
+}
+
+.bg-instagram {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  color: white;
+}
+
+.bg-twitter {
+  background-color: #1da1f2;
+  color: white;
+}
+
+.bg-linkedin {
+  background-color: #0077b5;
+  color: white;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* List styling */
+.list-inline {
+  margin: 0;
+  padding: 0;
+}
+
+.list-inline-item {
+  margin-right: 1rem;
+}
+
+.list-inline-item:last-child {
+  margin-right: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767.98px) {
+  .text-sm-end {
+    text-align: center !important;
+  }
+  
+  .list-inline-item {
+    margin-right: 0.5rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .col-6 {
+    margin-bottom: 2rem;
+  }
+  
+  .list-inline-item {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+}

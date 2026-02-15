@@ -1,0 +1,73 @@
+
+services:
+  mysql:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: agencereservation
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+
+
+
+  activemq:
+    image: apache/activemq-classic:5.18.3
+    container_name: activemq
+    ports:
+     - "8161:8161"
+     - "61616:61616"
+     - "61613:61613"
+    volumes:
+      - ./activemq/conf/activemq.xml:/opt/activemq/conf/activemq.xml
+
+
+  spring:
+    build: ./AgenceReservation
+    ports:
+      - "8081:8081"
+    env_file:
+      - .env
+    depends_on:
+      - mysql
+      - activemq
+    restart: unless-stopped  
+
+  node:
+   build: ./backEnd_ReadOnly
+   env_file:
+    - ./backEnd_ReadOnly/.env
+   ports:
+    - "4000:4000"
+   depends_on:
+    - activemq
+   environment:
+    ACTIVEMQ_HOST: activemq       # <- nom du service docker
+    ACTIVEMQ_PORT: 61613
+    ACTIVEMQ_USER: admin
+    ACTIVEMQ_PASSWORD: admin
+   restart: unless-stopped  
+    
+  frontend:
+    build: ./Agence-de-reservation--front
+    container_name: frontend-vite
+    env_file:
+    - ./Agence-de-reservation--front/.env
+    ports:
+      - "5173:5173"
+    depends_on:
+      - spring
+      - node
+    restart: unless-stopped   
+volumes:
+  mysql_data:
+  mongo_data:   

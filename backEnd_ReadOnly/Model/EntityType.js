@@ -1,0 +1,11 @@
+
+const EntityType ={
+  CLIENT: "CLIENT",
+  OFFRE_VOL: "OFFRE_VOL",
+  OFFRE_HOTEL: "OFFRE_HOTEL",
+  RESERVATION: "RESERVATION",
+  IMAGE: "IMAGE"
+  ,NOTIFICATION: "NOTIFICATION"
+}
+
+module.exports = EntityType;    

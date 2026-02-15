@@ -1,0 +1,40 @@
+package com.example.demo.Services.ServiceImage;
+
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+@Service
+public class CloudinaryService {
+
+
+    @Autowired
+    private  Cloudinary cloudinary;
+
+
+    public Map<String, String> uploadImage(MultipartFile file) throws IOException {
+        byte[] finalImage = ImageSize.resizeImageIfNeeded(file);
+
+        Map uploadResult = cloudinary.uploader().upload(finalImage, ObjectUtils.emptyMap());
+
+        Map<String, String> result = new HashMap<>();
+        result.put("url", uploadResult.get("secure_url").toString());
+        result.put("public_id", uploadResult.get("public_id").toString());
+
+        return result;
+    }
+
+
+    public boolean deleteImage(String publicId) throws IOException {
+        Map result = cloudinary.uploader().destroy(publicId, ObjectUtils.emptyMap());
+
+        return "ok".equals(result.get("result"));
+    }
+
+}

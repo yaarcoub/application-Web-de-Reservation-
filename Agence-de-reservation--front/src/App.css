@@ -1,0 +1,8 @@
+.App {
+  text-align: left;
+}
+
+/* Override any conflicting styles */
+.has-navbar-mobile {
+  /* Add any mobile navbar specific styles here */
+}

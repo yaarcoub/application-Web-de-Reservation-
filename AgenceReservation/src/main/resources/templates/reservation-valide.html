@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Réservation valide</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #d4edda;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        .card {
+            padding: 30px;
+            border-radius: 15px;
+            background-color: #fff;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .info {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div class="card">
+    <h1 class="text-success">✅ Réservation confirmée</h1>
+    <p>Code : <span th:text="${reservation.codeReservation}" class="info"></span></p>
+    <p>Nom : <span th:text="${reservation.nom}" class="info"></span></p>
+    <p>Prénom : <span th:text="${reservation.prénom}" class="info"></span></p>
+    <p>Date expiration : <span th:text="${reservation.dateExpiration}" class="info"></span></p>
+    <a href="/" class="btn btn-success mt-3">Retour à l'accueil</a>
+</div>
+</body>
+</html>
