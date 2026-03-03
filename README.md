@@ -53,6 +53,9 @@ Cette architecture permet :
 - D’améliorer la performance d’affichage des offres
 - D’assurer une communication asynchrone entre les services
 
+  <img width="787" height="472" alt="image" src="https://github.com/user-attachments/assets/4c8eb6c4-415e-479d-bcc3-a56ac55d2ec3" />
+
+
 ---
 
 ## 🚀 Installation et Démarrage
